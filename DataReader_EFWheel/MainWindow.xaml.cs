@@ -48,10 +48,13 @@ namespace DataReader_EFWheel
             //    countCompany =  SimpleFactory.CreatDataReaderHelper().Delete<CompanyModel>(id);
             //    countUser = GenericCache<DataReaderHelper>.GetCache().Delete<UserModel>(id);
             }
+               {
+                   //测试合并的标识
+               }
 
-            }
+
+        }
 
 
-          
     }
 }
