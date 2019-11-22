@@ -26,8 +26,32 @@ namespace DataReader_EFWheel
         {
             InitializeComponent();
 
-        var company=    GenericCache<DataReaderHelper>.GetCache().Read<CompanyModel>(1);
-        var user = GenericCache<DataReaderHelper>.GetCache().Read<UserModel>(1);
-        }
+            int id = 4;
+
+               { 
+            var company = SimpleFactory.CreatDataReaderHelper().Read<CompanyModel>(id);
+            var user = GenericCache<DataReaderHelper>.GetCache().Read<UserModel>(id);
+
+
+
+            var countCompany = SimpleFactory.CreatDataReaderHelper().INSERT<CompanyModel>(company.FirstOrDefault());
+            var countUser = GenericCache<DataReaderHelper>.GetCache().INSERT<UserModel>(user.FirstOrDefault());
+
+            //var tempCompany = company.FirstOrDefault();
+            //tempCompany.Address = "修改111";
+            //var tempUser = user.FirstOrDefault();
+            //tempUser.Remark = "修改111";
+
+            //countCompany = SimpleFactory.CreatDataReaderHelper().Update<CompanyModel>(tempCompany);
+            //countUser = GenericCache<DataReaderHelper>.GetCache().Update<UserModel>(tempUser);
+
+            //    countCompany =  SimpleFactory.CreatDataReaderHelper().Delete<CompanyModel>(id);
+            //    countUser = GenericCache<DataReaderHelper>.GetCache().Delete<UserModel>(id);
+            }
+
+            }
+
+
+          
     }
 }

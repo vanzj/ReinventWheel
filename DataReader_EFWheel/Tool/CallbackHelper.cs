@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace DataReader_EFWheel.Tool
 {
-   public class CallbackHelper
-   {
-       private Thread thread;
+    public class CallbackHelper
+    {
+        private Thread thread;
         public CallbackHelper()
         {
-         
+
         }
 
         public Func<T> ThreadWithReturn<T>(Func<T> funcT)
@@ -33,5 +33,28 @@ namespace DataReader_EFWheel.Tool
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="threadStart"></param>
+        /// <param name="funcT"></param>
+        /// <returns></returns>
+        public Func<int> ThreadWithArgeWithRetrun<T>(Func<T, int> func)
+        {
+            int i = 0;
+
+            ParameterizedThreadStart threadStart = model => { i = func.Invoke((T)model); };
+
+
+            Thread thread = new Thread(threadStart);
+            thread.Start();
+
+            return new Func<int>(() =>
+            {
+                thread.Join();
+                return i;
+            });
+        }
     }
 }

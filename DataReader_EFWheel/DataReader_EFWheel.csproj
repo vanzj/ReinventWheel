@@ -56,7 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attribute\IAttributeCheck.cs" />
     <Compile Include="Attribute\RenameAtrribute.cs" />
+    <Compile Include="Attribute\RequiredCheckAttribute.cs" />
+    <Compile Include="Tool\IAbstractDataReaderHelper.cs" />
+    <Compile Include="Tool\SimpleFactory.cs" />
     <Compile Include="Tool\CallbackHelper.cs" />
     <Compile Include="Tool\DataReaderHelper.cs" />
     <Compile Include="Tool\GenericCache.cs" />
