@@ -19,6 +19,7 @@ namespace DataReader_EFWheel.Entity
         public string Address { get; set; }
         [RenameAtrribute("telePhone", "电话号码")]
         public string TelePhone { get; set; }
+        [EmailCheck]
         [RenameAtrribute("email", "电子邮箱")]
         public string Email { get; set; }
      

@@ -25,36 +25,23 @@ namespace DataReader_EFWheel
         public MainWindow()
         {
             InitializeComponent();
+            int id = 6;
+            {
+                var company = SimpleFactory.CreatDataReaderHelper().Read<CompanyModel>(id);
+                var user = GenericCache<DataReaderHelper>.GetCache().Read<UserModel>(id);
+             var countCompany = SimpleFactory.CreatDataReaderHelper().INSERT<CompanyModel>(company.FirstOrDefault());
+                var countUser = GenericCache<DataReaderHelper>.GetCache().INSERT<UserModel>(user.FirstOrDefault());
+                //var tempCompany = company.FirstOrDefault();
+                //tempCompany.Address = "修改111";
+                //var tempUser = user.FirstOrDefault();
+                //tempUser.Remark = "修改111";
 
-            int id = 4;
+                //countCompany = SimpleFactory.CreatDataReaderHelper().Update<CompanyModel>(tempCompany);
+                //countUser = GenericCache<DataReaderHelper>.GetCache().Update<UserModel>(tempUser);
 
-               { 
-            var company = SimpleFactory.CreatDataReaderHelper().Read<CompanyModel>(id);
-            var user = GenericCache<DataReaderHelper>.GetCache().Read<UserModel>(id);
-
-
-
-            var countCompany = SimpleFactory.CreatDataReaderHelper().INSERT<CompanyModel>(company.FirstOrDefault());
-            var countUser = GenericCache<DataReaderHelper>.GetCache().INSERT<UserModel>(user.FirstOrDefault());
-
-            //var tempCompany = company.FirstOrDefault();
-            //tempCompany.Address = "修改111";
-            //var tempUser = user.FirstOrDefault();
-            //tempUser.Remark = "修改111";
-
-            //countCompany = SimpleFactory.CreatDataReaderHelper().Update<CompanyModel>(tempCompany);
-            //countUser = GenericCache<DataReaderHelper>.GetCache().Update<UserModel>(tempUser);
-
-            //    countCompany =  SimpleFactory.CreatDataReaderHelper().Delete<CompanyModel>(id);
-            //    countUser = GenericCache<DataReaderHelper>.GetCache().Delete<UserModel>(id);
+                //    countCompany =  SimpleFactory.CreatDataReaderHelper().Delete<CompanyModel>(id);
+                //    countUser = GenericCache<DataReaderHelper>.GetCache().Delete<UserModel>(id);
             }
-               {
-                   //测试合并的标识
-               }
-
-
         }
-
-
     }
 }

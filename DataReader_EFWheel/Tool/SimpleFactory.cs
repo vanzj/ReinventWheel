@@ -13,17 +13,27 @@ namespace DataReader_EFWheel.Tool
         private static string IRacTypeConfigReflection = ConfigurationManager.AppSettings["Read"];
         private static string DllName = IRacTypeConfigReflection.Split(',')[0];
         private static string TypeName = IRacTypeConfigReflection.Split(',')[1];
-
+        private static IAbstractDataReaderHelper reader = null;
+        private static readonly object _lock =new  object();
         public static IAbstractDataReaderHelper CreatDataReaderHelper()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            if (!string.IsNullOrEmpty(DllName))
+            if (reader == null)
             {
-                assembly = Assembly.Load(DllName);
+                lock (_lock)
+                {
+                    if (reader == null)
+                    {
+                        Assembly assembly = Assembly.GetExecutingAssembly();
+                        if (!string.IsNullOrEmpty(DllName))
+                        {
+                            assembly = Assembly.Load(DllName);
+                        }
+                        Type type = assembly.GetType(TypeName);
+                         reader = Activator.CreateInstance(type) as IAbstractDataReaderHelper;
+                    }
+                }
             }
-            Type type = assembly.GetType(TypeName);
-            var reader = Activator.CreateInstance(type);
-            return reader as  IAbstractDataReaderHelper;
+            return reader;
         }
     }
 }

@@ -86,7 +86,6 @@ namespace DataReader_EFWheel.Tool
             Type type = typeof(T);
             foreach (var property in type.GetProperties())
             {
-
                 if (property.IsDefined(typeof(IAttributeCheck), true))
                 {
                     var temp = property.GetCustomAttributes(typeof(IAttributeCheck), true)
